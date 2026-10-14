@@ -175,6 +175,8 @@ except ValidationError as e:
 
 reading2 = Reading(station_id='A56', timestamp='morning', temperature_c="21.5", humidity=40)
 print(reading2)
+print(type(reading2.temperature_c))
+print(type(reading2.humidity))
 #Add a comment: why does Pydantic accept "21.5" but reject "very humid"? State the rule in your own words.
 #A: in pydantic, it allows numeric string by converting the string into float with built in function float(v). 
 # But when it's non-numeric string, the float()function fails and then throw a python ValueError
