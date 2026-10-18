@@ -34,6 +34,11 @@ print(df.head())
 # Task 2
 #check for missing values:
 print(df.describe())
+missing_values = df.isnull().sum()
+print("number of missing values:")
+print(missing_values)
+# there are no missing values in the dataframe
+
 print(df.corr(numeric_only=True)["temperature_2m_max"].sort_values())
 #temp_min has a very strong positive correlation with temp_max (0.93)
 plt.scatter(

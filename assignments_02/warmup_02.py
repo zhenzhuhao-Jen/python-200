@@ -89,7 +89,8 @@ print("R²:", model_full.score(X_test_f, y_test_f))
 print("temp_min coefficient:", model_full.coef_[0])
 print("is_rainy coefficient:", model_full.coef_[1])
 # after adding the is_rainy.R² went up to 0.94 from last model 0.89.So it does help.
-
+# the is_rainy coefficient is about -2.91 degrees Celsius. It represent that holding the temp_min as constant,
+# the rain lowers the predicted high roughly 2.91 degrees Celsius. 
 # Q5
 # Using the two-feature model from Question 4, 
 # create this plot for the test set. Add a diagonal reference line, the title "Predicted vs Actual", labeled axes, 
