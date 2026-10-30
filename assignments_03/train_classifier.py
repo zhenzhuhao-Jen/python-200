@@ -71,10 +71,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
     )
 
-knn_model = Pipeline([
-    ("scaler", StandardScaler()),
-    ("knn", KNeighborsClassifier(n_neighbors=5)),
-])
+
 for k in [1, 3, 5, 7, 9, 11, 15, 21]:
     knn = Pipeline([
         ("scaler", StandardScaler()),
@@ -83,10 +80,21 @@ for k in [1, 3, 5, 7, 9, 11, 15, 21]:
     scores = cross_val_score(knn, X_train, y_train, cv=5)
     print(f"k={k:2d}:  mean={scores.mean():.3f}")
 
+best_k = 1
+knn_model = Pipeline([
+    ("scaler", StandardScaler()),
+    ("knn", KNeighborsClassifier(n_neighbors=best_k)),
+])
+
 knn_model.fit(X_train, y_train)
 y_pred = knn_model.predict(X_test)
-print("Test accuracy:  ", accuracy_score(y_test, y_pred))
+
+acc = accuracy_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+print(f"Test accuracy: {acc:.3f}   F1: {f1:.3f}")
+
 print(classification_report(y_test, y_pred, target_names=["skip", "good"]))
+#------
 
 # Task 4: Build and Evaluate a Logistic Regression Classifier
 # Build a Pipeline of StandardScaler and LogisticRegression(max_iter=1000). 
@@ -128,8 +136,8 @@ metadata = {
     "city": "Virginia",
     "features": features,
     "label": "good_for_running",
-    "test_accuracy": 0.95,
-    "test_f1": 0.93,
+    "test_accuracy": round(acc, 3),
+    "test_f1": round(f1, 3),
     "label_rule": {
         "temperature_2m_max": "7 to 26 C",
         "temperature_2m_min": ">= 0 C",
