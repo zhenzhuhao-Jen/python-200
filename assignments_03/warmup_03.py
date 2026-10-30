@@ -34,7 +34,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # Add a comment explaining,in one sentence, why you fit the scaler on X_train only.
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)  #returns a numpy array
-X_test_scaled = scaler.fit_transform(X_test)
+X_test_scaled = scaler.transform(X_test)
 
 scaled_df = pd.DataFrame(X_train_scaled, columns=X.columns)
 print(scaled_df.mean())
