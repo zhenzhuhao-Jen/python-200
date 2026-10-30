@@ -200,8 +200,9 @@ cm = confusion_matrix(y_test, y_pred, labels=[0,1])
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=labels)
 disp.plot(colorbar=False)
 plt.title("Logistic Regression Confusion Matrix")
-plt.show()
 plt.savefig("./assignments_03/outputs/logreg_confusion_matrix.png")
+plt.show()
+
 # the model made 9 false positives and 7 false negatives. The false positives matter more for a running app.
 
 
