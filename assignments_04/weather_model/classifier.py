@@ -44,7 +44,7 @@ class WeatherClassifier:
         Raises:
             ValueError: If any required feature is missing.
         """
-        if days == []:
+        if not days:
             return []
         frame = pd.DataFrame(days)
         missing = [f for f in self.features if f not in frame.columns]

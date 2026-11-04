@@ -34,21 +34,9 @@ def clf(model_path):
     return WeatherClassifier(model_path)
 
 
-"""
-def test_good_day_predicted_good(clf):
-    result = clf.predict([
-        {"temperature_2m_max": 18, "temperature_2m_min": 9, "precipitation_sum": 0.0, "wind_speed_10m_max": 10}
-    ])
-    assert result[0].label == "good"
-def test_bad_day_predicted_skip(clf):
-    result = clf.predict([
-        {"temperature_2m_max": 3, "temperature_2m_min": -5, "precipitation_sum": 10.0, "wind_speed_10m_max": 38}
-    ])
-    assert result[0].label == "skip"
-"""
 
-@pytest.mark.parametrize("days", [{"temperature_2m_max": 18, "temperature_2m_min": 9, "precipitation_sum": 0.0, "wind_speed_10m_max": 10}, {"temperature_2m_max": 3, "temperature_2m_min": -5, "precipitation_sum": 10.0, "wind_speed_10m_max": 38}])
-def test_days_predicted_with_right_label(days):
+@pytest.mark.parametrize("days", [[{"temperature_2m_max": 18, "temperature_2m_min": 9, "precipitation_sum": 0.0, "wind_speed_10m_max": 10}, {"temperature_2m_max": 3, "temperature_2m_min": -5, "precipitation_sum": 10.0, "wind_speed_10m_max": 38}], [{"temperature_2m_max": 25, "temperature_2m_min": 12, "precipitation_sum": 0.0, "wind_speed_10m_max": 8}, {"temperature_2m_max": 10, "temperature_2m_min": -3, "precipitation_sum": 8.0, "wind_speed_10m_max": 42}]])
+def test_days_predicted_with_right_label(clf, days):
     results = clf.predict(days)
     assert results[0].label == "good"
     assert results[1].label == "skip"

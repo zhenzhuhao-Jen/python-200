@@ -58,14 +58,14 @@ print(day2_forecast.summary())
 def parse_temperature(text: str) -> float:
     """parse the temperature value to float type from string type."""
     try:
-        text = float(text)
+        return float(text)
     except ValueError:
-        print('temperature value must be a number')
+        raise ValueError('temperature value must be a number')
 
 def test_parse_temperature_valid():
     assert parse_temperature("24.1") == pytest.approx(24.1)
 
 def test_parse_temperature_bad_input_raises():
     with pytest.raises(ValueError, match="temperature"):
-        assert parse_temperature("hot")
+         parse_temperature("hot")
 # Without match, an unrelated `ValueError` from a typo in the test setup would still make the test pass, so essentially it could miss catching the temperature value error.
