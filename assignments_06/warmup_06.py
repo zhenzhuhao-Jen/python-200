@@ -13,19 +13,18 @@ else:
 
 
 # Scenario A: A legal team wants an assistant that can answer questions about their internal policy library — hundreds of PDFs that are updated every quarter.
-# Best approach: fine-tuning
-# Reason: Fine-tuning is a process designed to help a pre-trained LLM excel at specific tasks. It facilitates LLM grounding by exposing the model to additional data relevant to the application in question.
+# Best approach: RAG
+# Reason: a library that changes every quarter is exactly the case RAG is built for, since retraining a model every quarter to keep it current is impractical, while RAG just re-indexes the new documents.
 
 
 # Scenario B: A startup wants their model to write product copy in a very specific brand voice — a dry, minimalist style that does not appear much online. They have 3,000 examples their in-house writers produced over the years.
-# Best approach: prompt engineering
-# Reason: Prompt engineering is a technique focused on optimizing the input provided to your large language model. By providing clear instructions, context, and desired formats, prompt engineering can mitigate some of the inherent shortcomings of basic prompts.
+# Best approach: Fine-tuning
+# Reason: Fine-tuning is useful when you want the model to adopt a particular style or internalize patterns that are too complex to express in a prompt. and it requires many examples.
 
 
 # Scenario C: A data analyst needs to ask an LLM questions about a single two-page report she just received. She does not need this to work for any other document.
-# Best approach: RAG
-# Reason: RAG intercepts a prompt, identifies relevant information from internal and external sources, and then augments the prompt with the additional information – leading to a better, more relevant response.
-
+# Best approach: Prompt engineering
+# Reason: For a one time question, the data analyst could include the report in the prompt, this is a case for prompt engineering.
 
 
 # Concepts Question 2
