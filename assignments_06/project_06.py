@@ -42,6 +42,8 @@ query_engine = index.as_query_engine(similarity_top_k=3, llm=llm)
 
 
 # Step 4: Query the Assistant
+print("Step 4: Query the Assistant")
+
 questions = [
     "What are Groundwork's hours on weekends?",
     "Do you offer any dairy-free milk options?",
@@ -56,7 +58,7 @@ for q in questions:
     print("A:", response)
     
     for node_with_score in response.source_nodes:
-     print(f"Node ID: {node_with_score.node.node_id}")
+     print(f"Document Name: {node_with_score.node.metadata["file_name"]}")
      print(f"Similarity Score: {node_with_score.score:.4f}")
      print(f"Text Snippet: {node_with_score.node.get_content()[:200]}...")
      print("-" * 30)
@@ -76,7 +78,7 @@ for q in questions:
     print("A:", response)
     
     for node_with_score in response.source_nodes:
-     print(f"Node ID: {node_with_score.node.node_id}")
+     print(f"Document Name: {node_with_score.node.metadata["file_name"]}")
      print(f"Similarity Score: {node_with_score.score:.4f}")
      print(f"Text Snippet: {node_with_score.node.get_content()[:200]}...")
      print("-" * 30)
